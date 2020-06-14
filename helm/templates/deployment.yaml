@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: frontend_deploy
+  name: frontenddeploy
 spec: 
   replicas: 2
   template:
