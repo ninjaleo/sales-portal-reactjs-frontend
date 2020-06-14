@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: frontend_deploy
+spec: 
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: frontend
+    spec:
+      containers: 
+      - name: frontend
+        image: ninjaleo/frontend:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
