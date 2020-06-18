@@ -26,9 +26,16 @@ pipeline {
       }
     }
     
+    
+    stage('Remove Image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
+	 
     stage('Run Container') {
       steps{
-        sh "docker run -itd -p 3001:3000 $registry:$BUILD_NUMBER"
+        sh "docker run -itd -p 3000:80 $registry:$BUILD_NUMBER"
       }
     }
     
@@ -38,13 +45,5 @@ pipeline {
       }
     }
     
-    
-    
-    /* stage('Remove Image') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
-      }
-    }
-    */
   }
 }
