@@ -11,7 +11,8 @@ spec:
     spec:
       containers: 
       - name: frontend
-        image: sureshtripini/quote-ui-prod:latest
+        image: ninjaleo/frontend:latest
         imagePullPolicy: IfNotPresent
+        terminationMessagePath: "/tmp/my-log"
         ports:
         - containerPort: 3000
