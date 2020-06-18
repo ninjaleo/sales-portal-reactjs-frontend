@@ -11,7 +11,7 @@ spec:
     spec:
       containers: 
       - name: frontend
-        image: ninjaleo/frontend:latest
+        image: sureshtripini/quote-ui-prod:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
