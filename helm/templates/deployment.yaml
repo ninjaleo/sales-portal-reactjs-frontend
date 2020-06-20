@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: frontenddeploy
 spec: 
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -15,4 +15,4 @@ spec:
         imagePullPolicy: IfNotPresent
         terminationMessagePath: "/tmp/my-log"
         ports:
-        - containerPort: 3000
+        - containerPort: 80
