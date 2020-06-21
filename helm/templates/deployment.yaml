@@ -11,7 +11,7 @@ spec:
     spec:
       containers: 
       - name: frontend
-        image: ninjaleo/frontend:latest
+        image: ninjaleo/front-end:latest
         imagePullPolicy: IfNotPresent
         terminationMessagePath: "/tmp/my-log"
         ports:
