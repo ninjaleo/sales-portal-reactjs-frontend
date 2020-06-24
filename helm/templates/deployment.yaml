@@ -13,10 +13,10 @@ spec:
       - name: frontend
         image: ninjaleo/reactlogin:latest
         terminationMessagePath: "/tmp/my-log"
+        ports:
+        - containerPort: 80
       tolerations:
         - key: "name"
           operation: "Equal"
           value: "ninja"
           effect: "NoSchedule"
-        ports:
-        - containerPort: 80
