@@ -9,7 +9,7 @@ function registerTheUser(userinfo) {
     console.log("Password Is:" + password)
     return dispatch => {
         dispatch(registerationPending());
-        axios.post('http://35.239.181.247:3001/signup', userinfo)
+        axios.post('http://34.72.239.75:3001/signup', userinfo)
             .then(
                 response => {
                     const { status, message } = response.data;
