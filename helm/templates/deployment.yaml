@@ -15,8 +15,5 @@ spec:
         terminationMessagePath: "/tmp/my-log"
         ports:
         - containerPort: 80
-      tolerations:
-        - key: "name"
-          operation: "Equal"
-          value: "ninja"
-          effect: "NoSchedule"
+      nodeSelector:
+        name: ninja
