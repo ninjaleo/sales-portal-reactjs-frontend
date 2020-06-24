@@ -12,7 +12,6 @@ spec:
       containers: 
       - name: frontend
         image: ninjaleo/reactlogin:latest
-        imagePullPolicy: IfNotPresent
         terminationMessagePath: "/tmp/my-log"
         ports:
         - containerPort: 80
