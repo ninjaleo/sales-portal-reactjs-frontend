@@ -9,7 +9,7 @@ function registerTheUser(userinfo) {
     console.log("Password Is:" + password)
     return dispatch => {
         dispatch(registerationPending());
-        axios.post('http://backend.default.svc.cluster.local:3001/signup', userinfo)
+        axios.post('http://104.197.86.32:3001/signup', userinfo)
             .then(
                 response => {
                     const { status, message } = response.data;
