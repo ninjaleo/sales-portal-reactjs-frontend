@@ -5,7 +5,7 @@ function loginValidator(logincredentials) {
     console.log(logincredentials);
     return dispatch => {
         dispatch(loginPending());
-        axios.post('http://104.197.86.32:3001/login', logincredentials)
+        axios.post('http://34.72.37.100:3001/login', logincredentials)
             .then(
                 response => {
                     const { status } = response.data;
