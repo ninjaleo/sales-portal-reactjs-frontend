@@ -5,7 +5,7 @@ function loginValidator(logincredentials) {
     console.log(logincredentials);
     return dispatch => {
         dispatch(loginPending());
-        axios.post('http://backend.default.svc.cluster.local:3001/login', logincredentials)
+        axios.post('http://34.70.85.126:3001/login', logincredentials)
             .then(
                 response => {
                     const { status } = response.data;
