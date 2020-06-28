@@ -9,4 +9,5 @@ spec:
       protocol: TCP
   selector:
     name: frontend
+    app: frontendapp
   type: LoadBalancer
