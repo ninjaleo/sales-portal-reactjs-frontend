@@ -8,12 +8,11 @@ spec:
     metadata:
       labels:
         name: frontend
+        app: frontendapp
     spec:
       containers: 
       - name: frontend
         image: ninjaleo/reactlogin:latest
-        terminationMessagePath: "/tmp/my-log"
         ports:
         - containerPort: 80
-      nodeSelector:
-        name: ninja
+   
