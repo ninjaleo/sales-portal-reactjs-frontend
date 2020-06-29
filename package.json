@@ -21,7 +21,9 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "winston": "^3.2.1",
-    "zxcvbn": "^4.4.2"
+    "zxcvbn": "^4.4.2",
+    "firebase": "^7.15.4",
+    "react-firebaseui": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
