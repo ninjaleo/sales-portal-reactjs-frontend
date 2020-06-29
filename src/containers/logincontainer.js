@@ -4,23 +4,29 @@ import Login from '../components/login'
 import SalesPortal from '../components/salesportal'
 import { bindActionCreators } from 'redux';
 import loginvalidator from '../data/loginvalidator';
-import Pending from '../components/pending'
+import Pending from '../components/pending';
+import {setGoogleLogin} from '../reducers/loginreducer';
 
 class LoginContainer extends Component {
 
     constructor(props) {
         super(props);
         this.handleUserAuthentication = this.handleUserAuthentication.bind(this);
+        this.handleGoogleLogin=this.handleGoogleLogin.bind(this);
     }
 
     handleUserAuthentication = (logincredentials) => {
         this.props.loginvalidator(logincredentials);
 
     }
+    handleGoogleLogin=(user)=>{
+        this.props.setGoogleLogin(user);
+    }
+
 
     render() {
         //console.log("hello:" + this.props.loginStatus + ":" + this.props.isLoggedIn + ":" + this.props.userName)
-        let UIComponent = <Login handleUserAuthentication={this.handleUserAuthentication} />;
+        let UIComponent = <Login handleUserAuthentication={this.handleUserAuthentication} handleGoogleLogin={this.handleGoogleLogin}/>;
         if (this.props.isLoggedIn) {
             if (this.props.loginStatus === "SUCCESS") {
                 console.log("hello:" + this.props.loginStatus + ":" + this.props.isLoggedIn + ":" + this.props.userName)
@@ -32,13 +38,13 @@ class LoginContainer extends Component {
                 UIComponent = <Pending />
             }
             if (this.props.loginStatus === "FAILED") {
-                UIComponent = <Login handleUserAuthentication={this.handleUserAuthentication} message={this.props.message} />
+                UIComponent = <Login handleUserAuthentication={this.handleUserAuthentication} handleGoogleLogin={this.handleGoogleLogin} message={this.props.message} />
             }
 
         }
 
         if (this.props.registrationMessage !== '' && this.props.registrationMessage !== null && this.props.registrationMessage !== undefined) {
-            UIComponent = <Login handleUserAuthentication={this.handleUserAuthentication} registrationMessage={this.props.registrationMessage} />;
+            UIComponent = <Login handleUserAuthentication={this.handleUserAuthentication} handleGoogleLogin={this.handleGoogleLogin} registrationMessage={this.props.registrationMessage} />;
         }
 
         return (
@@ -59,7 +65,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    loginvalidator: loginvalidator
+    loginvalidator: loginvalidator,
+    setGoogleLogin:setGoogleLogin,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
