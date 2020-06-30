@@ -35,8 +35,8 @@ export function setGoogleLogin(user) {
   return (dispatch) => {
     if (user && user.emailVerified) {
       dispatch(loginSuccess(user.displayName));
-    } else {
-      dispatch(loginFailed("Invalid Google User"));
+    } else if (user === null) {
+      dispatch(loginFailed());
     }
   };
 }

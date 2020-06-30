@@ -12,9 +12,6 @@ import RegisterContainer from "../containers/registercontainer";
 import Alert from "@material-ui/lab/Alert";
 import * as firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import firebaseConfig from "../config/firebase.config";
-
-firebase.initializeApp(firebaseConfig);
 
 class login extends Component {
   constructor(props) {
@@ -51,10 +48,27 @@ class login extends Component {
       });
     }
 
-     firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
       console.log("user", user);
-      this.props.handleGoogleLogin(user);
-     });
+      if (user != null) {
+        this.props.handleGoogleLogin(user);
+      }
+    });
+    // firebase
+    //   .auth()
+    //   .setPersistence(firebase.auth.Auth.Persistence.NONE)
+    //   .then(function () {
+    //     return firebase
+    //       .auth()
+    //       .onAuthStateChanged((user) => {
+    //         console.log(user);
+    //       })
+    //       .then((user) => {
+    //         if (user != null) {
+    //           this.props.handleGoogleLogin(user);
+    //         }
+    //       });
+    //   });
   }
 
   emailRef = React.createRef();
@@ -82,7 +96,6 @@ class login extends Component {
       localStorage.checkbox = isChecked;
     }
     this.props.handleUserAuthentication(this.state.formData);
-    
   };
 
   onChangeCheckbox = (event) => {
@@ -175,7 +188,7 @@ class login extends Component {
                 >
                   Sign In
                 </Button>
-                <div className="margin-align">
+                <div className="login-margin-align">
                   <StyledFirebaseAuth
                     uiConfig={this.uiConfig}
                     firebaseAuth={firebase.auth()}

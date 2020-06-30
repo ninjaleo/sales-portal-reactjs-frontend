@@ -6,6 +6,10 @@ import { bindActionCreators } from 'redux';
 import loginvalidator from '../data/loginvalidator';
 import Pending from '../components/pending';
 import {setGoogleLogin} from '../reducers/loginreducer';
+import * as firebase from "firebase";
+import firebaseConfig from "../config/firebase.config";
+
+firebase.initializeApp(firebaseConfig);
 
 class LoginContainer extends Component {
 
@@ -22,7 +26,10 @@ class LoginContainer extends Component {
     handleGoogleLogin=(user)=>{
         this.props.setGoogleLogin(user);
     }
-
+    signOut = () => {
+        firebase.auth().signOut();
+        this.props.setGoogleLogin(null);
+      };
 
     render() {
         //console.log("hello:" + this.props.loginStatus + ":" + this.props.isLoggedIn + ":" + this.props.userName)
@@ -30,7 +37,7 @@ class LoginContainer extends Component {
         if (this.props.isLoggedIn) {
             if (this.props.loginStatus === "SUCCESS") {
                 console.log("hello:" + this.props.loginStatus + ":" + this.props.isLoggedIn + ":" + this.props.userName)
-                UIComponent = <SalesPortal userName={this.props.userName} />
+                UIComponent = <SalesPortal userName={this.props.userName} signOut={this.signOut}/>
             }
         }
         else {
