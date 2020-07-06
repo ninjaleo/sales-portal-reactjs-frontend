@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import Login from '../components/login'
-import SalesPortal from '../components/salesportal'
+import PortalContainer from './portalcontainer'
 import { bindActionCreators } from 'redux';
 import loginvalidator from '../data/loginvalidator';
 import Pending from '../components/pending';
@@ -37,7 +37,7 @@ class LoginContainer extends Component {
         if (this.props.isLoggedIn) {
             if (this.props.loginStatus === "SUCCESS") {
                 console.log("hello:" + this.props.loginStatus + ":" + this.props.isLoggedIn + ":" + this.props.userName)
-                UIComponent = <SalesPortal userName={this.props.userName} signOut={this.signOut}/>
+                UIComponent = <PortalContainer userName={this.props.userName} signOut={this.signOut}/>
             }
         }
         else {

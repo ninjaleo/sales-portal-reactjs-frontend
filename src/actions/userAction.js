@@ -6,6 +6,9 @@ const REGISTERATION_SUCCESS = 'REGISTERATION_SUCCESS';
 const REGISTERATION_ACTIVATED = 'REGISTERATION_ACTIVATED';
 const REGISTERATION_USER_FOUND = 'REGISTERATION_USER_FOUND';
 const REGISTERATION_FAILED = 'REGISTERATION_FAILED';
+const ADD_QUOTE_SELECTED = 'ADD_QUOTE_SELECTED';
+const VIEW_QUOTES_SELECTED = 'VIEW_QUOTES_SELECTED';
+const ADD_QUOTE_SUBMITTED = 'ADD_QUOTE_SUBMITTED';
 
 
 export const loginPending = logininfo => ({
@@ -47,4 +50,19 @@ export const registerUserFound = registerinfo => ({
 export const registerationFailed = error => ({
     type: REGISTERATION_FAILED,
     payload: error
+})
+
+export const addQuoteSelected = quoteInfo => ({
+    type: ADD_QUOTE_SELECTED,
+    payload: quoteInfo
+})
+
+export const viewQuotesSelected = userName => ({
+    type: VIEW_QUOTES_SELECTED,
+    payload: userName
+})
+
+export const addQuoteSubmitted = loanInfo => ({
+    type: ADD_QUOTE_SUBMITTED,
+    payload: loanInfo
 })
