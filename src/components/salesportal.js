@@ -26,11 +26,11 @@ export default function SalesPortal(props) {
 
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [anchorE2, setAnchorE2] = React.useState(null);
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
   const [menuSelected, setMenuSelected] = React.useState("");
 
   const isMenuOpen = Boolean(anchorEl);
-  const isSalesMenuOpen = Boolean(anchorE2);
+  const isSalesMenuOpen = Boolean(anchorEl2);
 
   const handleAddQuoteMenu = () => {
       setMenuSelected("addQuote");
@@ -51,10 +51,10 @@ export default function SalesPortal(props) {
     };
     
     const handleSalesMenuOpen = (event) => {
-      setAnchorE2(event.currentTarget);
+      setAnchorEl2(event.currentTarget);
       };
     const handleSalesMenuClose = () => {
-      setAnchorE2(null);
+      setAnchorEl2(null);
       };
     
     const accountMenuId = 'sales-account-menu';
@@ -76,7 +76,7 @@ export default function SalesPortal(props) {
     const salesMenuId = 'sales-menu';
     const renderSalesMenu = (
         <Menu
-          anchorE1={anchorE2}
+          anchorEl={anchorEl2}
           anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
           id={salesMenuId}
           keepMounted
@@ -84,8 +84,8 @@ export default function SalesPortal(props) {
           open={isSalesMenuOpen}
           onClose={handleSalesMenuClose}
         >
-          <MenuItem position='relative' onClick={handleAddQuoteMenu}>Add Quote</MenuItem>
-          <MenuItem position='relative' onClick={handleViewQuotesMenu}>My Quotes</MenuItem>
+          <MenuItem onClick={handleAddQuoteMenu}>Add Quote</MenuItem>
+          <MenuItem onClick={handleViewQuotesMenu}>My Quotes</MenuItem>
         </Menu>
       );
 
