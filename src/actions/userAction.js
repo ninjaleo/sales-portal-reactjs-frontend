@@ -6,9 +6,11 @@ const REGISTERATION_SUCCESS = 'REGISTERATION_SUCCESS';
 const REGISTERATION_ACTIVATED = 'REGISTERATION_ACTIVATED';
 const REGISTERATION_USER_FOUND = 'REGISTERATION_USER_FOUND';
 const REGISTERATION_FAILED = 'REGISTERATION_FAILED';
-const ADD_QUOTE_SELECTED = 'ADD_QUOTE_SELECTED';
 const VIEW_QUOTES_SELECTED = 'VIEW_QUOTES_SELECTED';
-const ADD_QUOTE_SUBMITTED = 'ADD_QUOTE_SUBMITTED';
+const VIEW_QUOTES_SUCCESS = 'VIEW_QUOTES_SUCCESS';
+const VIEW_QUOTES_FAILED = 'VIEW_QUOTES_FAILED';
+const ADD_QUOTE_SUCCESS = 'ADD_QUOTE_SUCCESS';
+const ADD_QUOTE_FAILED = 'ADD_QUOTE_FAILED';
 
 
 export const loginPending = logininfo => ({
@@ -52,17 +54,27 @@ export const registerationFailed = error => ({
     payload: error
 })
 
-export const addQuoteSelected = quoteInfo => ({
-    type: ADD_QUOTE_SELECTED,
-    payload: quoteInfo
+export const addQuoteSuccess = quoteDetails => ({
+    type: ADD_QUOTE_SUCCESS,
+    payload: quoteDetails
 })
 
-export const viewQuotesSelected = userName => ({
+export const addQuoteFailed = error => ({
+    type: ADD_QUOTE_FAILED,
+    payload: error
+})
+
+export const viewQuotesSelected = userEmail => ({
     type: VIEW_QUOTES_SELECTED,
-    payload: userName
+    payload: userEmail
 })
 
-export const addQuoteSubmitted = loanInfo => ({
-    type: ADD_QUOTE_SUBMITTED,
-    payload: loanInfo
+export const viewQuotesSuccess = quoteDetails => ({
+    type: VIEW_QUOTES_SUCCESS,
+    payload: quoteDetails
+})
+
+export const viewQuotesFailed = error => ({
+    type: VIEW_QUOTES_FAILED,
+    payload: error
 })

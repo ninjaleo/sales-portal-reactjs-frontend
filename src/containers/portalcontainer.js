@@ -23,6 +23,20 @@ class PortalContainer extends Component {
     }
 
     render() {
+        if (this.props.isAddQuoteSuccess || this.props.isViewSuccess || this.props.isViewQuotes) {
+            return(
+                <SalesPortal 
+                    handleViewQuotes={this.handleViewQuotes}
+                    handleAddQuote={this.handleAddQuote}
+                    isAddQuoteSuccess={this.props.isAddQuoteSuccess}
+                    isViewQuotesSelected={this.props.isViewQuotes}
+                    isViewSuccess={this.props.isViewSuccess}
+                    quoteDetails={this.props.quoteDetails}
+                    userName={this.props.userName} 
+                    signOut={this.props.signOut}/>
+            );
+        }
+        else {
             return(
                 <SalesPortal 
                     handleViewQuotes={this.handleViewQuotes}
@@ -30,16 +44,17 @@ class PortalContainer extends Component {
                     userName={this.props.userName} 
                     signOut={this.props.signOut}/>
             );
+        }
     }
 }
 
 const mapStateToProps = state => {
-    const { isAddQuote, isViewQuotes, isAddQuoteSubmitted } = state.portalreducer;
-    console.log("mapStateToProps:" + isAddQuote + ":" + isViewQuotes + ":" + isAddQuoteSubmitted);
+    const { isAddQuoteSuccess, isViewQuotes, isViewSuccess, quoteDetails } = state.portalreducer;
     return {
-        isAddQuote,
+        isAddQuoteSuccess,
         isViewQuotes,
-        isAddQuoteSubmitted
+        isViewSuccess,
+        quoteDetails      
     };
 }
 

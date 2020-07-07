@@ -1,11 +1,23 @@
-import { viewQuotesSelected } from '../actions/userAction'
+import { viewQuotesSelected, viewQuotesSuccess, viewQuotesFailed } from '../actions/userAction'
 import axios from 'axios';
 
-function viewQuotes(userName) {
+function viewQuotes(userEmail) {
     
     return dispatch => {
-        console.log("view quotes dispatched" + userName);
         dispatch(viewQuotesSelected());
+        axios.get('http://localhost:3001/getQuotes?userEmail=' + userEmail)
+            .then(
+                response => {
+                    const data = response.data;
+                    if (data.length > 0) {
+                        dispatch(viewQuotesSuccess(data))
+                    }
+                    else{
+                        const { message } = response.data;
+                        dispatch(viewQuotesFailed(message))
+                    }
+                }
+            )
     }
 }
 

@@ -60,7 +60,7 @@ export default function SalesPortal(props) {
     const accountMenuId = 'sales-account-menu';
     const renderAccountMenu = (
         <Menu
-          anchorEl={anchorEl}
+          anchorel={anchorEl}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           id={accountMenuId}
           keepMounted
@@ -76,7 +76,7 @@ export default function SalesPortal(props) {
     const salesMenuId = 'sales-menu';
     const renderSalesMenu = (
         <Menu
-          anchorE1={anchorE2}
+          anchore1={anchorE2}
           anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
           id={salesMenuId}
           keepMounted
@@ -84,8 +84,8 @@ export default function SalesPortal(props) {
           open={isSalesMenuOpen}
           onClose={handleSalesMenuClose}
         >
-          <MenuItem onClick={handleAddQuoteMenu}>Add Quote</MenuItem>
-          <MenuItem onClick={handleViewQuotesMenu}>My Quotes</MenuItem>
+          <MenuItem position='relative' onClick={handleAddQuoteMenu}>Add Quote</MenuItem>
+          <MenuItem position='relative' onClick={handleViewQuotesMenu}>My Quotes</MenuItem>
         </Menu>
       );
 
@@ -124,7 +124,12 @@ export default function SalesPortal(props) {
         {renderAccountMenu}
         {renderSalesMenu}
         <PortalView 
+          userName={props.userName}
           menuSelected={menuSelected} 
+          isAddQuoteSuccess={props.isAddQuoteSuccess}
+          isViewSuccess={props.isViewSuccess}
+          isViewQuotesSelected={props.isViewQuotesSelected}
+          quoteDetails={props.quoteDetails}
           handleAddQuote={props.handleAddQuote}/>
       </div>
     );
