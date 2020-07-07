@@ -5,7 +5,7 @@ function viewQuotes(userEmail) {
     
     return dispatch => {
         dispatch(viewQuotesSelected());
-        axios.get('http://localhost:3001/getQuotes?userEmail=' + userEmail)
+        axios.get('http://localhost:80/getQuotes?userEmail=' + userEmail)
             .then(
                 response => {
                     const data = response.data;

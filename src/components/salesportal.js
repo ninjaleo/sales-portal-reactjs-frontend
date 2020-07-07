@@ -60,7 +60,7 @@ export default function SalesPortal(props) {
     const accountMenuId = 'sales-account-menu';
     const renderAccountMenu = (
         <Menu
-          anchorel={anchorEl}
+          anchorEl={anchorEl}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           id={accountMenuId}
           keepMounted
@@ -76,7 +76,7 @@ export default function SalesPortal(props) {
     const salesMenuId = 'sales-menu';
     const renderSalesMenu = (
         <Menu
-          anchore1={anchorE2}
+          anchorE1={anchorE2}
           anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
           id={salesMenuId}
           keepMounted

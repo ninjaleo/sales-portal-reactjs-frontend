@@ -4,7 +4,7 @@ import axios from 'axios';
 function addQuote(loanInfo) {
     
     return dispatch => {
-        axios.post('http://localhost:3001/createQuote', loanInfo)
+        axios.post('http://localhost:80/createQuote', loanInfo)
             .then(
                 response => {
                     const { data } = response.data;
