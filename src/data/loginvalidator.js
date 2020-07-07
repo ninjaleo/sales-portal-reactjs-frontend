@@ -6,7 +6,8 @@ function loginValidator(logincredentials) {
     return dispatch => {
         dispatch(loginPending());
         axios.post('http://localhost:80/login', logincredentials)
-        //axios.post('http://node-service/', logincredentials)
+        //axios.post('http://node-service/', logincredentials
+
             .then(
                 response => {
                     const { status } = response.data;
