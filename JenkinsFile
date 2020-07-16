@@ -1,0 +1,103 @@
+def value = ""
+pipeline {
+
+  agent any
+   environment {
+       TAG= "latest"
+       registry = "ninjaleo/reactlogin"
+       registryCredential = 'dockerhub'
+       dockerImage = ''
+   }
+    stages {
+        stage('Example') {
+            steps {
+                echo 'Hello welcome to jenkins'
+                sleep 0
+                        }
+        }
+ stage("passing ipaddress to FE"){
+            steps {
+                script{
+                sh """
+                sudo gcloud container clusters get-credentials khids --zone us-central1-a --project learningsabarish
+                """
+                sh """
+                IP=\$(kubectl get svc | grep node-service | awk '{print \$4}' > /tmp/ip.txt)
+               """
+            sh """
+            cat /tmp/ip.txt
+            """
+                
+                
+                }
+            }
+        }
+     
+        stage("Checkout code") {
+            steps {
+               
+               git branch: 'master',
+  
+    url: '''https://github.com/ninjaleo/sales-portal-reactjs-frontend.git'''
+            }
+        }
+        
+      stage ("replace ipaddress in FE"){
+            steps{
+                script{
+                    sh """
+                    value=\$(cat /tmp/ip.txt)
+                    echo \$value
+                    
+               sudo sed -i "s/localhost/\${value}/g" \$WORKSPACE/src/data/loginvalidator.js
+               sudo sed -i "s/localhost/\${value}/g" \$WORKSPACE/src/data/registertheuser.js
+               sudo sed -i "s/localhost/\${value}/g" \$WORKSPACE/src/data/addquote.js
+               sudo sed -i "s/localhost/\${value}/g" \$WORKSPACE/src/data/viewquotes.js
+               """
+               // sh "sed -i 's/localhost/${IPADDRESS}/g' $WORKSPACE/src/data/loginvalidator.js"
+                //sh "sed -i 's/localhost/${IPADDRESS}/g' $WORKSPACE/src/data/registertheuser.js"
+            }
+            }
+        }
+     
+         stage("Build Image") {
+            steps {
+               script {
+              //dockerImage = docker.build registry + ":$BUILD_NUMBER"
+             dockerImage = docker.build registry + ":$TAG"
+               
+               }
+               
+            }
+        }
+        
+         stage("Push Image to DockerHub") {
+            steps {
+               script {
+             docker.withRegistry( '', registryCredential ) {
+              dockerImage.push()
+               
+               }
+            }
+        }
+    }
+    
+        stage('Deploy to Google Kubernetes') {
+            steps{
+			    echo "Deployment started"
+			   // sh 'gcloud config set project ninjaleo'
+			    //sh 'sudo gcloud container clusters get-credentials ninja-kube --zone us-central1-a --project ninjaleo'
+			    sh 'sudo gcloud container clusters get-credentials khids --zone us-central1-a --project learningsabarish'
+			    sh 'helm upgrade frontendreact --recreate-pods --force --install ./helm'
+			    //sh 'helm version'
+			   
+					echo "Deployment Finished"
+            }
+        }
+}
+post { 
+        always { 
+           echo "Final test is success"
+        }
+    }
+}                       
