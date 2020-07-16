@@ -4,8 +4,8 @@ metadata:
   name: frontend
 spec:
   ports:
-    - port: 9376
-      targetPort: 9376
+    - port: 80
+      targetPort: 80
       protocol: TCP
   selector:
     name: frontend
