@@ -5,7 +5,7 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 30725
       protocol: TCP
   selector:
     name: frontend
