@@ -6,9 +6,8 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 31008
       protocol: TCP
   selector:
     name: frontend
     app: frontendapp
-  type: NodePort
+  type: LoadBalancer
